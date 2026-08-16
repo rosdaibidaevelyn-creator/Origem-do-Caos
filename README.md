@@ -4,7 +4,7 @@ Site oficial do RPG de horror paranormal "Origem do Caos".
 
 ## 🌐 Como acessar
 
-O site está disponível online em: [URL será adicionada após deployment]
+O site está disponível online em: [(https://rosdaibidaevelyn-creator.github.io/Origem-do-Caos/)]
 
 ## 📁 Estrutura do Projeto
 
@@ -16,13 +16,6 @@ O site está disponível online em: [URL será adicionada após deployment]
 - `assets/` - Imagens, CSS e JavaScript
 - `data/` - Dados do RPG
 
-## 🚀 Como executar localmente
-
-1. Clone o repositório
-2. Abra o terminal na pasta do projeto
-3. Execute: `python -m http.server 8000`
-4. Acesse: http://localhost:8000
-
 ## 📜 Licença
 
-© 2024 Origem do Caos - Todos os direitos reservados
+© 2022 Origem do Caos - Todos os direitos reservados

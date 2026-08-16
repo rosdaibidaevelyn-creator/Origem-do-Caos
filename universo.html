@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universo & Lore — Origem do Caos</title>
+<link rel="stylesheet" href="assets/css/main.css?v=6">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><img src="assets/images/dimensions/default.png" alt="✦" style="width:36px; height:36px; vertical-align:middle;"> Origem do Caos</a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="universo.html" class="active">Universo</a>
+      <a href="bestiario.html">Bestiário</a>
+      <a href="compendio.html">Memorial</a>
+      <a href="personagem.html">conecte-se</a>
+    </nav>
+    <div class="header-tools">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="global-search" type="text" placeholder="Buscar no grimório..." autocomplete="off">
+        <div id="search-results" class="search-results"></div>
+      </div>
+      <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="section" style="padding-top:4rem;">
+    <div class="wrap">
+      <div class="eyebrow">Quarentena a Queda</div>
+      <h1 class="h-display ink-band" style="font-size:clamp(2.2rem,6vw,3.6rem);">O universo</h1>
+      <p class="lede" style="max-width:680px; margin-top:1rem;">A história por trás da Ordem do Caos, as Dimensões que cercam a nossa realidade, e as Sedes que protegem o mundo em segredo.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Premissa</div>
+        <h2>O fim do segredo</h2>
+      </div>
+      <div class="panel corner-frame" style="padding:2.5rem;" id="premissa-text"></div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section class="section tight" id="origem">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">1012 D.C. — 2028</div>
+        <h2 id="origem-titulo"></h2>
+      </div>
+      <div id="origem-text" style="max-width:760px; display:flex; flex-direction:column; gap:1.2rem; color:var(--ink-dim);"></div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section class="section tight" id="dimensoes">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">A estrutura do universo</div>
+        <h2>As Dimensões</h2>
+        <p>Cada Dimensão possui sua própria espécie, hierarquia e Deuses. Todas se conectam à Dimensão Terrena por brechas que a Ordem do Caos jurou vigiar.</p>
+      </div>
+      <div class="grid cols-3" id="dim-grid"></div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section class="section tight" id="sedes">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">organizações</div>
+        <h2>Sedes da Ordem do Caos</h2>
+        <p>breve descrição do que é a ordem no arnut</p>
+      </div>
+      <div class="grid cols-2" id="sedes-grid"></div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Ordem do Arnut</h2>
+        <p>breve descrição do que é a ordem no arnut</p>
+      </div>
+      <div class="grid cols-2" id="sedes-grid-2"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-mark">Origem do Caos</div>
+    <div>TRAUMATIZANDO JOGADORES DESDE 2022</div>
+  </div>
+</footer>
+
+<script src="data/data.js"></script>
+<script src="assets/js/main.js?v=11"></script>
+<script>
+  const D = SITE_DATA;
+
+  document.getElementById('premissa-text').innerHTML = D.lore.premissa.map(p=>`<p>${p}</p>`).join('');
+
+  document.getElementById('origem-titulo').textContent = D.lore.origem.titulo;
+  document.getElementById('origem-text').innerHTML = D.lore.origem.texto.map(p=>`<p>${p}</p>`).join('');
+
+  document.getElementById('dim-grid').innerHTML = D.dimensoes.map(d=>`
+    <div class="card corner-frame">
+      <span class="dim-icon" style="position:static; display:inline-flex; width:49px; height:49px; margin-bottom:.7rem;">${iconFor(d.nome)}</span>
+      <div class="eyebrow" style="margin-bottom:.4rem;">Dimensão</div>
+      <h3>${d.nome}</h3>
+      <p style="color:var(--ink-dim); margin-top:.6rem; font-size:.95rem;">${d.desc}</p>
+    </div>`).join('');
+
+  const sedesHTML = D.sedes.map(s=>{
+    if(s.status === 'confidencial'){
+      return `
+      <div class="card corner-frame restricted-card" style="grid-column: span 2; position:relative; overflow:hidden;">
+        <div class="card-content" style="filter:none;">
+          <div class="flex-between">
+            <div>
+              <div class="eyebrow" style="margin-bottom:.4rem;">${s.periodo}</div>
+              <h3>Sede do ${s.nome}</h3>
+            </div>
+            <span class="tag" style="background:#d95301; color:white;">CONFIDENCIAL</span>
+          </div>
+          <div style="margin-top:1rem; display:flex; flex-direction:column; gap:1rem; color:var(--ink-dim);">
+            <p>Apenas Agentes Exterminadores possuem autorização para acessar este conteúdo.</p>
+          </div>
+        </div>
+        <div class="access-denied-popup" style="display:none;">ACESSO NEGADO</div>
+      </div>`;
+    }
+    return `
+      <div class="card corner-frame">
+        <div class="flex-between">
+          <h3>${s.nome}</h3>
+          <span class="tag pending">Pendente</span>
+        </div>
+        <p style="color:var(--ink-faint); margin-top:.6rem; font-size:.92rem;">${s.resumo}</p>
+      </div>`;
+  }).join('');
+
+  const arnutHTML = `
+      <div class="card corner-frame" style="grid-column: span 2;">
+        <div class="flex-between">
+          <div>
+            <div class="eyebrow" style="margin-bottom:.4rem;">XXXX - XXXX</div>
+            <h3>Não Localizada</h3>
+          </div>
+          <span class="tag" style="background:#d95301; color:white;">Desconhecido</span>
+        </div>
+        <div style="margin-top:1rem; display:flex; flex-direction:column; gap:1rem; color:var(--ink-dim);">
+          <p>breve descrição da ordem no arnut</p>
+        </div>
+      </div>`;
+
+  document.getElementById('sedes-grid').innerHTML = sedesHTML;
+  document.getElementById('sedes-grid-2').innerHTML = arnutHTML;
+
+  // Access denied popup functionality
+  document.querySelectorAll('.restricted-card').forEach(card => {
+    const popup = card.querySelector('.access-denied-popup');
+    const content = card.querySelector('.card-content');
+    
+    if(content) content.style.filter = 'none';
+    
+    card.addEventListener('click', () => {
+      if(popup) popup.style.display = 'block';
+      if(content) content.style.filter = 'blur(2px)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      if(popup) popup.style.display = 'none';
+      if(content) content.style.filter = 'none';
+    });
+  });
+  window.refreshDecor();
+</script>
+</body>
+</html>

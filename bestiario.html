@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestiário — Origem do Caos</title>
+<link rel="stylesheet" href="assets/css/main.css?v=6">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="index.html"><img src="assets/images/dimensions/default.png" alt="✦" style="width:36px; height:36px; vertical-align:middle;"> Origem do Caos</a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="universo.html">Universo</a>
+      <a href="bestiario.html" class="active">Bestiário</a>
+      <a href="compendio.html">Memorial</a>
+      <a href="personagem.html">conecte-se</a>
+    </nav>
+    <div class="header-tools">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="global-search" type="text" placeholder="Buscar no grimório..." autocomplete="off">
+        <div id="search-results" class="search-results"></div>
+      </div>
+      <button class="nav-toggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= LISTAGEM ================= -->
+  <div id="view-list">
+    <section class="section" style="padding-top:4rem;">
+      <div class="wrap">
+        <div class="eyebrow">seres sobrenaturais</div>
+        <h1 class="h-display ink-band" style="font-size:clamp(2.2rem,6vw,3.6rem);">Bestiário</h1>
+        <p class="lede" style="max-width:720px; margin-top:1rem;" id="bestiario-intro"></p>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="wrap">
+        <div class="filter-bar" id="filter-bar"></div>
+        <div class="grid cols-3" id="creature-grid"></div>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="divider"></div></div>
+
+    <section class="section tight" id="racas">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Dimensão Infernal</div>
+          <h2>As 14 Raças dos Infernáculos</h2>
+          <p>Embora exista uma única espécie na Dimensão Infernal, ela se divide em catorze raças distintas — cada uma com seu papel, instinto e lugar na hierarquia do Inferno.</p>
+        </div>
+        <div class="grid cols-3" id="racas-grid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= DETALHE DA CRIATURA ================= -->
+  <div id="view-detail" style="display:none;">
+    <section class="section" style="padding-top:4rem;">
+      <div class="wrap">
+        <a href="bestiario.html" class="btn ghost" style="margin-bottom:1.6rem;">← Voltar ao Bestiário</a>
+        <div class="flex-between">
+          <div>
+            <div class="eyebrow" id="d-dim"></div>
+            <h1 class="h-display ink-band" style="font-size:clamp(2.2rem,6vw,3.4rem);" id="d-nome"></h1>
+          </div>
+          <div style="text-align:right; font-family:var(--f-mono);">
+            <div class="data-label">Nível</div>
+            <div style="font-size:2rem; color:var(--amber-brt);" id="d-nivel"></div>
+          </div>
+        </div>
+        <p class="lede" style="max-width:760px; margin-top:1rem;" id="d-desc"></p>
+        <div style="display:flex; gap:2rem; margin-top:1rem; font-family:var(--f-mono); font-size:.85rem; color:var(--ink-faint);">
+          <div>Altura: <span id="d-altura" style="color:var(--ink-dim);"></span></div>
+          <div>Peso: <span id="d-peso" style="color:var(--ink-dim);"></span></div>
+          <div>Percepção: <span id="d-per" style="color:var(--ink-dim);"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tight">
+      <div class="wrap">
+        <div class="statblock">
+          <div class="panel corner-frame" style="padding:1.6rem;">
+            <h3 class="mt-0" style="margin-bottom:1rem;">Vitalidade da Criatura</h3>
+            <div class="stat-grid" id="d-vitalidade"></div>
+          </div>
+          <div class="panel corner-frame" style="padding:1.6rem;">
+            <h3 class="mt-0" style="margin-bottom:1rem;">Dados de Combate</h3>
+            <div class="dice-grid" id="d-dados"></div>
+          </div>
+        </div>
+
+        <div class="grid cols-2" style="margin-top:1rem; align-items:start;">
+          <div class="panel corner-frame" style="padding:1.6rem;">
+            <h3 class="mt-0" style="margin-bottom:1rem;">✧ Ações Padrões</h3>
+            <div id="d-acoes"></div>
+          </div>
+          <div class="panel corner-frame" style="padding:1.6rem;">
+            <h3 class="mt-0" style="margin-bottom:1rem;">✦ Habilidades Especiais</h3>
+            <div id="d-habilidades"></div>
+          </div>
+        </div>
+
+        <div class="panel corner-frame" style="padding:1.6rem; margin-top:1rem;" id="d-conhecimentos-wrap">
+          <h3 class="mt-0" style="margin-bottom:1rem;">Conhecimentos</h3>
+          <div class="knowledge-list" id="d-conhecimentos"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-mark">Origem do Caos</div>
+    <div>TRAUMATIZANDO JOGADORES DESDE 2022</div>
+  </div>
+</footer>
+
+<script src="data/data.js"></script>
+<script src="assets/js/main.js?v=11"></script>
+<script>
+const D = SITE_DATA;
+document.getElementById('bestiario-intro').textContent = D.bestiarioIntro;
+
+function acoesHTML(list){
+  if(!list || !list.length) return '<p style="color:var(--ink-faint);">Nenhuma ação padrão registrada para esta ficha.</p>';
+  return list.map(a=>`
+    <div class="ability">
+      <span class="name">${a.nome}</span>
+      <p style="margin-top:.2rem;">${a.texto}</p>
+    </div>`).join('');
+}
+function habilidadesHTML(list){
+  if(!list || !list.length) return '<p style="color:var(--ink-faint);">Nenhuma habilidade especial registrada para esta ficha.</p>';
+  return list.map(h=>`
+    <div class="ability">
+      <span class="name">${h.nome}</span><span class="tag-mini">${h.tipo}</span>
+      <p>${h.texto}</p>
+    </div>`).join('');
+}
+function vitalidadeHTML(v){
+  const rows = [
+    ['Vida', v.vida], ['Sanidade', v.sanidade], ['Proteção', v.protecao], ['Res. N.', v.resN]
+  ];
+  return rows.map(([k,val])=>`
+    <div class="stat-cell"><div class="k">${k}</div><div class="v">${val ?? '—'}</div></div>`).join('');
+}
+function dadosHTML(d){
+  const labels = {atkN:'ATK N', atkAB:'ATK AB', atkAF:'ATK AF', atkC:'ATK C', defN:'DEF N', defAB:'DEF AB', defC:'DEF C', desvN:'DESV N', desvO:'DESV O'};
+  return Object.entries(labels).filter(([k])=>d[k]).map(([k,label])=>`
+    <div class="dice-row"><span class="k">${label}</span><span class="v">${d[k]}</span></div>`).join('');
+}
+function conhecimentosHTML(list){
+  if(!list || !list.length) return '<p style="color:var(--ink-faint);">Ficha resumida — conhecimentos completos disponíveis no livro.</p>';
+  return list.map(([nome,val])=>`<span class="knowledge-pill">${nome} <b>[${val}]</b></span>`).join('');
+}
+
+function renderCreature(c){
+  document.getElementById('d-dim').textContent = `${c.dimensao} · ${c.categoria}`;
+  document.getElementById('d-nome').textContent = c.nome;
+  document.getElementById('d-nivel').textContent = c.nivel;
+  document.getElementById('d-desc').textContent = c.descricao;
+  document.getElementById('d-altura').textContent = c.altura;
+  document.getElementById('d-peso').textContent = c.peso;
+  document.getElementById('d-per').textContent = c.per;
+  document.getElementById('d-vitalidade').innerHTML = vitalidadeHTML(c.vitalidade);
+  document.getElementById('d-dados').innerHTML = dadosHTML(c.dados);
+  document.getElementById('d-acoes').innerHTML = acoesHTML(c.acoesPadroes);
+  document.getElementById('d-habilidades').innerHTML = habilidadesHTML(c.habilidadesEspeciais);
+  document.getElementById('d-conhecimentos').innerHTML = conhecimentosHTML(c.conhecimentos);
+  document.title = c.nome + ' — Bestiário — Origem do Caos';
+}
+
+function renderGrid(list){
+  const grid = document.getElementById('creature-grid');
+  if(!list.length){
+    grid.innerHTML = `<div class="placeholder-block" style="grid-column:1/-1;"><img src="assets/images/dimensions/default.png" alt="🕯" style="width:36px; height:36px; vertical-align:middle;">Nenhuma criatura encontrada nesta dimensão — as fichas ainda não foram mapeadas nesta versão do site.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(c=>`
+    <a class="creature-card corner-frame" href="bestiario.html?criatura=${c.slug}">
+      <span class="dim-icon" style="width:49px; height:49px;">${iconFor(c.dimensao)}</span>
+      <div class="lvl">NÍVEL ${c.nivel}</div>
+      <div class="dim">${c.dimensao} · ${c.categoria}</div>
+      <h3>${c.nome}</h3>
+      <p>${c.descricao}</p>
+    </a>`).join('');
+  window.refreshDecor();
+}
+
+function initFilters(){
+  const dims = ['Todas', ...new Set(D.criaturas.map(c=>c.dimensao))];
+  const bar = document.getElementById('filter-bar');
+  bar.innerHTML = dims.map((d,i)=>`<button class="filter-chip ${i===0?'active':''}" data-dim="${d}">${d}</button>`).join('');
+  bar.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      bar.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      const dim = chip.dataset.dim;
+      renderGrid(dim === 'Todas' ? D.criaturas : D.criaturas.filter(c=>c.dimensao===dim));
+    });
+  });
+}
+
+document.getElementById('racas-grid').innerHTML = D.racasInfernaculos.map(r=>`
+  <div class="card corner-frame">
+    <span class="dim-icon" style="position:static; display:inline-flex; width:49px; height:49px; margin-bottom:.6rem;">${ICONS.rune}</span>
+    <h3 style="font-size:1.1rem;">${r.nome}</h3>
+    <p style="color:var(--ink-dim); margin-top:.5rem; font-size:.92rem;">${r.desc}</p>
+  </div>`).join('');
+window.refreshDecor();
+
+// roteamento simples via query string
+const params = new URLSearchParams(location.search);
+const slug = params.get('criatura');
+if(slug){
+  const creature = D.criaturas.find(c=>c.slug===slug);
+  if(creature){
+    document.getElementById('view-list').style.display = 'none';
+    document.getElementById('view-detail').style.display = 'block';
+    renderCreature(creature);
+  } else {
+    initFilters();
+    renderGrid(D.criaturas);
+  }
+} else {
+  initFilters();
+  renderGrid(D.criaturas);
+}
+</script>
+</body>
+</html>
